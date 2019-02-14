@@ -1,15 +1,51 @@
 <html>
 <head>
 <title>The Sitting Adam</title>
-
+<script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
 <style>
-body {
+.one {
 	background-image: url("images/1.jpg");
-	background-size: cover;
 	background-position:center;
+	background-repeat: repeat;
+}
+.two {
+	background-image: url("images/2.jpg");
+	background-position:center;
+	background-repeat: repeat;
+}
+.three {
+	background-image: url("images/3.jpg");
+	background-position:center;
+	background-repeat: repeat;
 }
 </style>
 </head>
 <body>
+<script>
+var current = -1;
+function gen(){
+	var classCycle=['one','two','three'];
+
+    var randomNumber = Math.floor(Math.random() * classCycle.length);
+	if(randomNumber == current){
+		randomNumber++;
+	}
+    var classToAdd = classCycle[randomNumber];
+
+    $('body').addClass(classToAdd);	
+}
+$(function() {
+	gen();
+});
+
+$(document).on("click","body", function () {
+	$('body').removeClass();
+    gen();
+});
+	
+</script>
 </body>
 </html>
