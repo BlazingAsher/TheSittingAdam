@@ -33,6 +33,9 @@ function gen(){
 	if(randomNumber == current){
 		randomNumber++;
 	}
+	if(randomNumber == classCycle.length){
+		randomNumber = 0;
+	}
     var classToAdd = classCycle[randomNumber];
 
     $('body').addClass(classToAdd);	
