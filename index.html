@@ -6,41 +6,47 @@
   integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
   crossorigin="anonymous"></script>
 <style>
-.one {
-	background-image: url("images/1.jpg");
+.loot {
 	background-position:center;
 	background-repeat: repeat;
+}
+.one {
+	background-image: url("images/1.jpg");
 }
 .two {
 	background-image: url("images/2.jpg");
-	background-position:center;
-	background-repeat: repeat;
 }
 .three {
 	background-image: url("images/3.jpg");
-	background-position:center;
-	background-repeat: repeat;
+}
+.four {
+	background-image: url("images/4.jpg");
 }
 </style>
 </head>
 <body>
 <script>
-var current = -1;
+var current = 0;
 function gen(){
-	var classCycle=['one','two','three'];
+	var classCycle=['one','two','three','four'];
 
-    var randomNumber = Math.floor(Math.random() * classCycle.length);
-	if(randomNumber == current){
-		randomNumber++;
+	var randomNumber = 0;
+	var lscur = localStorage.getItem("current");
+	while (randomNumber == lscur){
+		randomNumber = Math.floor(Math.random() * classCycle.length);
 	}
-	if(randomNumber == classCycle.length){
-		randomNumber = 0;
-	}
+	localStorage.setItem("current",randomNumber);
+	console.log(lscur,randomNumber);
     var classToAdd = classCycle[randomNumber];
 
+	$('body').addClass("loot");
     $('body').addClass(classToAdd);	
 }
 $(function() {
+	if (localStorage.getItem("current") === null) {
+            localStorage.setItem('current', 0);
+        }
+
 	gen();
 });
 
